@@ -20,11 +20,12 @@ public class Manager {
 		this.jobId = jobId;
 		this.workspacePath = workspacePath;
 		
-		functionInstantiation = new FunctionInstantiation();
-		configManager = new ConfigManager();
-		parameterManager = new ParameterManager();
 		File workspaceFolder = new File(workspacePath);
 		if( ! workspaceFolder.exists() || ! workspaceFolder.isDirectory()) throw new IllegalArgumentException();
+		
+		functionInstantiation = new FunctionInstantiation();
+		configManager = new ConfigManager(workspaceFolder);
+		parameterManager = new ParameterManager(workspaceFolder);
 		responseHandler = new ResponseHandler(workspaceFolder, jobId);
 	}
 
