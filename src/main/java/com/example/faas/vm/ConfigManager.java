@@ -28,9 +28,15 @@ public class ConfigManager {
 	
 	private Properties load() throws IOException {
 		Properties props = new Properties();
-		try(FileInputStream fis = new FileInputStream(new File(workspaceFolder, "config.txt"))) {
-			props.load(fis);
+		File cfgFile = new File(workspaceFolder, "config.txt");
+		if(cfgFile.exists()) {
+			try(FileInputStream fis = new FileInputStream(cfgFile)) {
+				props.load(fis);
+			}
 		}
+		else
+			System.out.println("Config file missing - doing nothing: "+cfgFile);
+		
 		return props;
 	}
 }

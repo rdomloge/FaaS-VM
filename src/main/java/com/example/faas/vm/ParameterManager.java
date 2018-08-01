@@ -24,9 +24,15 @@ public class ParameterManager {
 	
 	private Properties load() throws IOException {
 		Properties props = new Properties();
-		try(FileInputStream fis = new FileInputStream(new File(workspaceFolder, "params-"+jobId+".txt"))) {
-			props.load(fis);
+		File paramFile = new File(workspaceFolder, "params-"+jobId+".txt");
+		if(paramFile.exists()) {
+			try(FileInputStream fis = new FileInputStream(paramFile)) {
+				props.load(fis);
+			}
 		}
+		else
+			System.out.println("Params file missing - doing nothing: "+paramFile);
+		
 		return props;
 	}
 }
