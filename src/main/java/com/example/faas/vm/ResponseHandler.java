@@ -21,7 +21,7 @@ public class ResponseHandler {
 	public void handle(Object response) throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(response);
-		File output = new File(workspaceFolder, "output-"+jobId+".json");
+		File output = new File(workspaceFolder, "output-"+jobId+"-json.txt");
 		try(FileWriter fw = new FileWriter(output)) {
 			fw.write(json);
 		}
