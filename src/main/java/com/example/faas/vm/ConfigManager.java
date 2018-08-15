@@ -2,10 +2,8 @@ package com.example.faas.vm;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Properties;
 
 import com.example.faas.common.Function;
@@ -13,17 +11,18 @@ import com.example.faas.common.Function;
 public class ConfigManager {
 	
 	private File workspaceFolder;
-
 	
 	public ConfigManager(File workspaceFolder) {
 		this.workspaceFolder = workspaceFolder;
 	}
 
-	public void configure(Function fn) throws IOException {
-        
+	public void configure(Function<Properties> fn) throws IOException {
 		Properties config = load();
-		config.put("BASE_URL", "http://bdbl.org.uk");
-		fn.setStaticConfig(config);
+		for (Entry e : config.entrySet()) {
+			System.out.printf("Property: %s = %s\n", e.getKey(), e.getValue());
+		}
+		
+		fn.setStaticConfig(load());
 	}
 	
 	private Properties load() throws IOException {
