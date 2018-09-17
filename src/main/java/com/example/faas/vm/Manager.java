@@ -2,9 +2,9 @@ package com.example.faas.vm;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Properties;
 
 import com.example.faas.common.Function;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Manager {
 
@@ -30,7 +30,8 @@ public class Manager {
 	}
 
 	public void handle(String clazz) throws IOException {
-		Function function = functionInstantiation.forClassName(clazz);
+		@SuppressWarnings("unchecked")
+		Function<Properties> function = functionInstantiation.forClassName(clazz);
 		configManager.configure(function);
 		parameterManager.configureJobParameters(function);
 		Object result = function.call();
