@@ -25,7 +25,7 @@ public class Manager {
 		
 		functionInstantiation = new FunctionInstantiation();
 		configManager = new ConfigManager(workspaceFolder);
-		parameterManager = new ParameterManager(workspaceFolder);
+		parameterManager = new ParameterManager(workspaceFolder, jobId);
 		responseHandler = new ResponseHandler(workspaceFolder, jobId);
 	}
 

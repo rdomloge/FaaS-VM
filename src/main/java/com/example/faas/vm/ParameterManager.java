@@ -14,8 +14,9 @@ public class ParameterManager {
 	private String jobId;
 
 	
-	public ParameterManager(File workspaceFolder) {
+	public ParameterManager(File workspaceFolder, String jobId) {
 		this.workspaceFolder = workspaceFolder;
+		this.jobId = jobId;
 	}
 
 	public void configureJobParameters(Function fn) throws IOException {
