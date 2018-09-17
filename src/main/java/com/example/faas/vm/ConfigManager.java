@@ -22,7 +22,6 @@ public class ConfigManager {
 	public void configure(Function fn) throws IOException {
         
 		Properties config = load();
-		config.put("BASE_URL", "http://bdbl.org.uk");
 		fn.setStaticConfig(config);
 	}
 	
